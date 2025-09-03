@@ -1,7 +1,9 @@
 # DSN2098 Sponsor Logo Detection & Forecasting Pipeline
 
 ## 🧠 Overview
-This project detects sponsor logos in IPL match footage, computes visibility KPIs, and forecasts future exposure. It integrates outputs from six team members into a unified pipeline.
+What if you could predict how often a brand appears in a video—before it even airs?
+AdVisor-AI turns raw video into brand intelligence. From spotting logos in frames to forecasting their future visibility, whether you're optimizing ad placements or analyzing sponsorship impact, AdVisor-AI turns raw footage into actionable insights.
+Built for analysts, marketers, and curious minds who want to see what’s coming next.
 
 ## 📁 Folder Structure
 integration/ ├── member2_frames/ # Extracted frames + index ├── member3_detection/ # Annotated images + detections ├── member4_kpis/ # KPI metrics ├── member5_forecast/ # Forecast results + plots ├── member6_app/ # Frontend files ├── run_all.sh # Integration script └── run.log  # Execution log
