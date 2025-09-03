@@ -2,7 +2,9 @@
 
 ## 🧠 Overview
 What if you could predict how often a brand appears in a video—before it even airs?
+
 AdVisor-AI turns raw video into brand intelligence. From spotting logos in frames to forecasting their future visibility, whether you're optimizing ad placements or analyzing sponsorship impact, AdVisor-AI turns raw footage into actionable insights.
+
 Built for analysts, marketers, and curious minds who want to see what’s coming next.
 
 ## 📁 Folder Structure
