@@ -1,0 +1,47 @@
+2025-08-30
+- Ran run_all.sh on Ubuntu 20.04
+- Python 3.9.7, TensorFlow 2.10.0, OpenCV 4.5.5
+- All modules passed; final forecast.csv generated
+Stage your changes:
+bash
+git add integration/run_all.sh integration/CHANGELOG.txt
+Commit:
+bash
+git commit -m "Set up integration script and folder structure"
+Push your branch:
+bash
+git push origin integration-setup
+Open a Pull Request for review and merge.
+If you initialized Git earlier:
+bash
+git add integration/
+git commit -m "Setup integration script and folder structure"
+Later you can create a GitHub repo, add it as a remote (git remote add origin <URL>), and push.
+Next Steps
+Swap in Member Code
+Coordinate with each teammate in this order: Member 2 → 3 → 4 → 5 → 6.
+Replace each stub script (in memberX_*/) with their actual implementation.
+After swapping, run ./run_all.sh, fix any errors (path mismatches, missing dependencies).
+Add Environment Setup
+At the top of integration/run_all.sh, add:
+bash
+# Activate virtual environment
+source ../venv/bin/activate
+Or add system checks for required binaries (python3, ffmpeg, etc.).
+Finalize Integration
+Remove any stub echo logging if you prefer real-time console logs only.
+Update integration/CHANGELOG.txt with final integration notes: versions, flags, known issues.
+Document & Present
+In your project README, explain how to run the pipeline:
+bash
+cd integration
+./run_all.sh
+Prepare Slide 3 (Hardware/Software Requirements) and Slide 4 (Architecture Diagram).
+Prepare for Review 1 (5–8 Aug)
+Ensure all teammates can run the pipeline end-to-end.
+Collect sample outputs: member3_detections.csv, member5_forecast.csv, sample annotated image, etc.
+Populate your demo dashboard (Member 6) with these outputs.
+2025-09-03: Integrated real outputs from Members 2–4
+  - Verified frame extraction, detection, and KPI aggregation
+  - Forecasting module pending
+  - All paths and outputs confirmed

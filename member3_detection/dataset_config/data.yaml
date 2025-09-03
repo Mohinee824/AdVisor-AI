@@ -1,0 +1,13 @@
+train: ../train/images
+val: ../valid/images
+test: ../test/images
+
+nc: 7
+names: ['Arun', 'Balkrishna Industries', 'Dream11', 'Jio', 'Kuhl', 'TATA IPL', 'philips']
+
+roboflow:
+  workspace: projext-rfm0p
+  project: ipl-logo-detection-hnqve
+  version: 2
+  license: CC BY 4.0
+  url: https://universe.roboflow.com/projext-rfm0p/ipl-logo-detection-hnqve/dataset/2

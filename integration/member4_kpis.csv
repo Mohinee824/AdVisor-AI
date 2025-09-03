@@ -1,0 +1,11 @@
+appearance_id,class_name,start_frame,end_frame,duration_frames,avg_confidence
+Arun_0,Arun,21,75,55,0.4175
+Balkrishna Industries_0,Balkrishna Industries,2,75,74,0.6241509433962263
+Balkrishna Industries_1,Balkrishna Industries,329,384,56,0.37375
+Jio_0,Jio,134,134,1,0.26
+TATA IPL_0,TATA IPL,1,166,166,0.6350660792951541
+TATA IPL_1,TATA IPL,230,235,6,0.275
+TATA IPL_2,TATA IPL,254,267,14,0.32999999999999996
+TATA IPL_3,TATA IPL,291,291,1,0.38
+TATA IPL_4,TATA IPL,313,405,93,0.54015625
+philips_0,philips,2,75,74,0.568952380952381
