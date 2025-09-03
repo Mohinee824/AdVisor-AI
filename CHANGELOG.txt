@@ -1,47 +1,108 @@
-2025-08-30
-- Ran run_all.sh on Ubuntu 20.04
-- Python 3.9.7, TensorFlow 2.10.0, OpenCV 4.5.5
-- All modules passed; final forecast.csv generated
-Stage your changes:
-bash
-git add integration/run_all.sh integration/CHANGELOG.txt
-Commit:
-bash
-git commit -m "Set up integration script and folder structure"
-Push your branch:
-bash
-git push origin integration-setup
-Open a Pull Request for review and merge.
-If you initialized Git earlier:
-bash
-git add integration/
-git commit -m "Setup integration script and folder structure"
-Later you can create a GitHub repo, add it as a remote (git remote add origin <URL>), and push.
-Next Steps
-Swap in Member Code
-Coordinate with each teammate in this order: Member 2 → 3 → 4 → 5 → 6.
-Replace each stub script (in memberX_*/) with their actual implementation.
-After swapping, run ./run_all.sh, fix any errors (path mismatches, missing dependencies).
-Add Environment Setup
-At the top of integration/run_all.sh, add:
-bash
-# Activate virtual environment
-source ../venv/bin/activate
-Or add system checks for required binaries (python3, ffmpeg, etc.).
-Finalize Integration
-Remove any stub echo logging if you prefer real-time console logs only.
-Update integration/CHANGELOG.txt with final integration notes: versions, flags, known issues.
-Document & Present
-In your project README, explain how to run the pipeline:
-bash
-cd integration
-./run_all.sh
-Prepare Slide 3 (Hardware/Software Requirements) and Slide 4 (Architecture Diagram).
-Prepare for Review 1 (5–8 Aug)
-Ensure all teammates can run the pipeline end-to-end.
-Collect sample outputs: member3_detections.csv, member5_forecast.csv, sample annotated image, etc.
-Populate your demo dashboard (Member 6) with these outputs.
-2025-09-03: Integrated real outputs from Members 2–4
-  - Verified frame extraction, detection, and KPI aggregation
-  - Forecasting module pending
-  - All paths and outputs confirmed
+# Changelog
+
+All notable changes to this project are documented here.
+
+This changelog follows [Keep a Changelog](https://keepachangelog.com/en/1.0.0/) and uses [Semantic Versioning](https://semver.org/).
+
+---
+
+## [1.0.0] - 2025-09-04
+### Added
+- Initial public release of **AdVisor-AI**: an end-to-end pipeline for brand logo detection, KPI computation, and forecasting from video
+- `run_all.sh` script for orchestrating the full workflow across modules
+- Modular folder structure with `member2_frames`, `member3_detection`, `member4_kpis`, `member5_forecast`, `member6_app`, and `yolov5`
+- `CHANGELOG.md` and `README.md` for documentation and version tracking
+- Forecasting visualizations saved to `member5_forecast/reports/figures/`
+
+### Fixed
+- Path resolution issues in `run_forecast.py` and `compute_kpis.py`
+- Non-numeric data handling in KPI forecasting
+- File misplacement caused by virtual environment execution context
+
+### Notes
+- Default branch is `master`
+- Forecasting warnings are expected due to integer-based indices and do not affect output integrity
+
+---
+
+## [0.9.3] - 2025-09-03
+### Added
+- Finalized `run_forecast.py` with CLI arguments and robust error handling
+- Multi-panel KPI forecast plot generation
+- Confidence interval computation using Holt-Winters residuals
+- `requirements.txt` capturing all dependencies
+
+### Changed
+- Renamed output file from `member4_kpis.csv` to `brand_kpis.csv`
+- Updated `run_all.sh` to reflect new file paths and naming conventions
+
+---
+
+## [0.9.2] - 2025-09-02
+### Added
+- KPI computation logic using grouped appearance IDs and frame gaps
+- Auto-detection of latest YOLOv5 `exp*/raw_detections.csv` folder
+- Aggregation of start/end frames, duration, and average confidence
+
+### Fixed
+- `KeyError: 'brand_name'` by switching to `class_name` from detection output
+- CSV parsing issues due to missing headers and inconsistent formats
+
+---
+
+## [0.9.1] - 2025-08-31
+### Added
+- YOLOv5 detection integration with `detect.py` and custom weights
+- CSV output enabled via `--save-csv` flag
+- Detection results stored in `runs/detect/exp*/raw_detections.csv`
+
+### Changed
+- Updated detection script to use video source instead of image folder
+- Adjusted confidence thresholds for better logo filtering
+
+---
+
+## [0.8.0] - 2025-08-28
+### Added
+- Frame extraction module using OpenCV
+- CLI support for video input, output directory, and frame indexing
+- `frames_index.csv` to track frame timestamps and IDs
+
+### Fixed
+- Frame skipping bug due to incorrect FPS handling
+- Output folder creation logic to avoid overwrite errors
+
+---
+
+## [0.7.0] - 2025-08-25
+### Added
+- Initial folder structure and module naming conventions
+- Git repo initialized locally with `.gitignore` and `README.md`
+- YOLOv5 submodule added via `git submodule add`
+
+---
+
+## [0.6.0] - 2025-08-20
+### Added
+- Roboflow dataset imported and structured under `member3_detection/dataset`
+- `data.yaml` configured for training and validation splits
+- Label files organized under `train/labels` and `valid/labels`
+
+---
+
+## [0.5.0] - 2025-08-18
+### Added
+- YOLOv5 training initiated with custom brand logo dataset
+- `best.pt` weights generated and saved to `member3_detection/`
+- Training logs and metrics reviewed for model tuning
+
+---
+
+## [0.4.0] - 2025-08-15
+### Added
+- Project ideation and naming: **AdVisor-AI**
+- Defined pipeline stages: frame extraction → detection → KPI → forecasting → frontend
+- Initial planning documents and module breakdowns created
+
+---
+
