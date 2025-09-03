@@ -1,1 +1,200 @@
-<html>App</html>
+<!-- <html>App</html> -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AdVisor-AI Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0f172a;
+            color: #e2e8f0;
+        }
+        .container {
+            max-width: 1200px;
+            margin: auto;
+            padding: 1.5rem;
+        }
+        .card {
+            background-color: #1e293b;
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 1.5rem;
+        }
+        .message-box {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #22c55e;
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 0.5rem;
+            z-index: 1000;
+            transition: transform 0.3s ease-in-out;
+            transform: translateY(-100px);
+        }
+        .message-box.show {
+            transform: translateY(0);
+        }
+        /* Custom styles for the table */
+        .log-table th, .log-table td {
+            padding: 0.5rem;
+            white-space: nowrap;
+        }
+        .log-table th {
+            font-weight: 600;
+            text-align: left;
+            color: #94a3b8;
+        }
+        .log-table tbody tr:hover {
+            background-color: #334155;
+        }
+    </style>
+</head>
+<body class="antialiased">
+    <div class="message-box" id="messageBox"></div>
+    <div class="container">
+        <header class="text-center mb-10">
+            <h1 class="text-4xl sm:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-600">
+                AdVisor-AI
+            </h1>
+            <p class="mt-2 text-lg text-slate-400">Predicting Brand Visibility in Sports Telecasts</p>
+        </header>
+
+        <!-- New: How It Works Section -->
+        <section class="card mb-6 p-8">
+            <h2 class="text-xl sm:text-2xl font-semibold mb-4 text-blue-300">How It Works</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
+                <div class="flex flex-col items-center">
+                    <div class="flex items-center justify-center w-12 h-12 bg-purple-500 rounded-full text-white font-bold text-lg mb-2">1</div>
+                    <h3 class="font-medium text-lg text-slate-200">Upload Video</h3>
+                    <p class="text-sm text-slate-400 mt-1">Submit your sports telecast footage for analysis.</p>
+                </div>
+                <div class="flex flex-col items-center">
+                    <div class="flex items-center justify-center w-12 h-12 bg-blue-500 rounded-full text-white font-bold text-lg mb-2">2</div>
+                    <h3 class="font-medium text-lg text-slate-200">AI Analysis</h3>
+                    <p class="text-sm text-slate-400 mt-1">Our AI engine detects brand logos and computes key visibility metrics.</p>
+                </div>
+                <div class="flex flex-col items-center">
+                    <div class="flex items-center justify-center w-12 h-12 bg-green-500 rounded-full text-white font-bold text-lg mb-2">3</div>
+                    <h3 class="font-medium text-lg text-slate-200">Get Actionable Insights</h3>
+                    <p class="text-sm text-slate-400 mt-1">Receive a detailed report on brand exposure and ad spots to inform your strategy.</p>
+                </div>
+            </div>
+        </section>
+
+        <main class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <!-- Video Upload Section -->
+            <section class="col-span-1 md:col-span-2 card">
+                <h2 class="text-xl sm:text-2xl font-semibold mb-4 text-blue-300">Video Analysis</h2>
+                <div class="flex flex-col items-center justify-center p-8 border-2 border-dashed border-slate-600 rounded-md">
+                    <svg class="w-16 h-16 text-slate-500 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"></path>
+                    </svg>
+                    <p class="text-slate-400 text-center">Drag and drop a video file here, or click to browse.</p>
+                    <input type="file" id="video-upload" class="hidden" accept="video/*" />
+                    <label for="video-upload" class="mt-4 px-6 py-2 bg-purple-600 text-white font-medium rounded-full cursor-pointer hover:bg-purple-700 transition duration-300">
+                        Upload Video
+                    </label>
+                </div>
+            </section>
+
+            <!-- KPI Metrics Section -->
+            <section class="col-span-1 card">
+                <h2 class="text-xl sm:text-2xl font-semibold mb-4 text-blue-300">Detailed Analysis Log</h2>
+                <div class="overflow-y-auto" style="max-height: 400px;">
+                    <table class="w-full text-left log-table">
+                        <thead class="sticky top-0 bg-slate-700">
+                            <tr>
+                                <th>Frame ID</th>
+                                <th>Timestamp</th>
+                                <th>Class Name</th>
+                                <th>Confidence</th>
+                                <th>X</th>
+                                <th>Y</th>
+                                <th>Width</th>
+                                <th>Height</th>
+                            </tr>
+                        </thead>
+                        <tbody id="analysis-log-body" class="divide-y divide-slate-600">
+                            <tr>
+                                <td colspan="8" class="text-center text-slate-400 p-4">
+                                    Analysis results will appear here after you upload a video.
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </main>
+        
+        <!-- New: Recent Analyses Section -->
+        <section class="col-span-1 card mt-6">
+            <h2 class="text-xl sm:text-2xl font-semibold mb-4 text-blue-300">Recent Analyses</h2>
+            <div class="bg-slate-700 p-4 rounded-md text-center text-slate-400">
+                <p>Your recent video analyses will appear here after you upload a file.</p>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        document.getElementById('video-upload').addEventListener('change', function(event) {
+            const file = event.target.files[0];
+            if (file) {
+                showMessage(`Uploading ${file.name} to the backend for analysis...`);
+    
+                const formData = new FormData();
+                formData.append('video', file);
+    
+                fetch('http://localhost:5050/analyze-video', {
+                    method: 'POST',
+                    body: formData,
+                })
+                .then(response => response.json())
+                .then(data => {
+                    showMessage(`Analysis of ${file.name} complete!`, true);
+    
+                    const tableBody = document.getElementById('analysis-log-body');
+                    tableBody.innerHTML = '';
+                    data.results.forEach(item => {
+                        const row = document.createElement('tr');
+                        row.innerHTML = `
+                            <td>${item.frame_id}</td>
+                            <td>${item.timestamp}</td>
+                            <td>${item.class_name}</td>
+                            <td>${(item.confidence * 100).toFixed(1)}%</td>
+                            <td>${item.x}</td>
+                            <td>${item.y}</td>
+                            <td>${item.width}</td>
+                            <td>${item.height}</td>
+                        `;
+                        tableBody.appendChild(row);
+                    });
+    
+                    document.querySelector('.bg-slate-700').innerHTML =
+                        `<p>Last analyzed: <strong>${data.filename}</strong> at ${new Date().toLocaleString()}</p>`;
+                })
+                .catch(error => {
+                    showMessage(`Error during analysis: ${error}`, false);
+                    console.error(error);
+                });
+            }
+        });
+    
+        function showMessage(message, isSuccess = false) {
+            const messageBox = document.getElementById('messageBox');
+            messageBox.textContent = message;
+            messageBox.style.backgroundColor = isSuccess ? '#22c55e' : '#f59e0b';
+            messageBox.classList.add('show');
+            setTimeout(() => {
+                messageBox.classList.remove('show');
+            }, 3000);
+        }
+    </script>
+    
+</body>
+</html>
