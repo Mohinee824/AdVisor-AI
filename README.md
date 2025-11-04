@@ -1,4 +1,4 @@
-# DSN2098 Sponsor Logo Detection & Forecasting Pipeline
+# Sponsor Logo Detection & Forecasting Pipeline
 
 ## 🧠 Overview
 What if you could predict how often a brand appears in a video—before it even airs?
