@@ -7,9 +7,6 @@ AdVisor-AI turns raw video into brand intelligence. From spotting logos in frame
 
 Built for analysts, marketers, and curious minds who want to see what’s coming next.
 
-## 📁 Folder Structure
-integration/ ├── member2_frames/ # Extracted frames + index ├── member3_detection/ # Annotated images + detections ├── member4_kpis/ # KPI metrics ├── member5_forecast/ # Forecast results + plots ├── member6_app/ # Frontend files ├── run_all.sh # Integration script └── run.log  # Execution log
-Code
 
 ## 🚀 How to Run
 1. Activate virtual environment:
@@ -19,6 +16,23 @@ Run the pipeline:
 bash
 cd integration
 ./run_all.sh
+
+🌐 How to Deploy the Website Locally
+Start the Flask backend:
+bash
+cd member6_app
+python app.py
+This will launch the backend at:
+Code
+http://localhost:5000
+Serve the frontend dashboard:
+bash
+python3 -m http.server 8080
+Then open:
+Code
+http://localhost:8080/index.html
+You’ll see the interactive dashboard with detection results and forecast plots.
+
 🧪 Dependencies
 See requirements.txt for all required packages.
 📦 Dataset & Training
