@@ -63,6 +63,8 @@ Member 6: Frontend
 
  
  Notes
+
+ 
 Raw video files are excluded from GitHub. Use sample frames or external links.
 For retraining, follow instructions in member3_detection/dataset_config/
 Code
